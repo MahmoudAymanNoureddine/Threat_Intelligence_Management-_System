@@ -13,6 +13,7 @@ class Menu:
         print("4. Update IOC")
         print("5. Delete IOC")
         print("6. Generate Reports")
-        print("7. Exit")
+        print("7. Threat Hunting")
+        print("8. Exit")
 
         return input("\nChoice: ")

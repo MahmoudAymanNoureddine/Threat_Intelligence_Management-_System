@@ -4,7 +4,8 @@ from threat_intel.ioc_viewer import IOCViewer
 from threat_intel.ioc_search import IOCSearch
 from threat_intel.ioc_update import IOCUpdate
 from threat_intel.ioc_delete import IOCDelete
-from threat_intel.report_menu import ReportMenu
+from threat_intel.report_generator import ReportGenerator
+from threat_intel.threat_hunter import ThreatHunter
 
 
 def main():
@@ -35,9 +36,13 @@ def main():
 
         elif choice == "6":
 
-            ReportMenu.generate()
+            ReportGenerator.generate()
 
         elif choice == "7":
+
+            ThreatHunter.hunt()
+
+        elif choice == "8":
 
             print("\nGoodbye!")
             break

@@ -71,7 +71,10 @@ class DatabaseManager:
     def get_all_iocs(self):
 
         self.cursor.execute(
-            "SELECT * FROM iocs"
+            """
+            SELECT *
+            FROM iocs
+            """
         )
 
         return self.cursor.fetchall()
@@ -124,6 +127,18 @@ class DatabaseManager:
         )
 
         self.connection.commit()
+
+    def get_critical_iocs(self):
+
+        self.cursor.execute(
+            """
+            SELECT *
+            FROM iocs
+            WHERE severity = 'CRITICAL'
+            """
+        )
+
+        return self.cursor.fetchall()
 
     def close(self):
 
