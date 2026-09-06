@@ -6,6 +6,7 @@ from threat_intel.ioc_update import IOCUpdate
 from threat_intel.ioc_delete import IOCDelete
 from threat_intel.report_generator import ReportGenerator
 from threat_intel.threat_hunter import ThreatHunter
+from threat_intel.statistics_engine import StatisticsEngine
 
 
 def main():
@@ -43,6 +44,10 @@ def main():
             ThreatHunter.hunt()
 
         elif choice == "8":
+
+            StatisticsEngine.show()
+
+        elif choice == "9":
 
             print("\nGoodbye!")
             break
