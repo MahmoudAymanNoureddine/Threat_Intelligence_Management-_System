@@ -25,6 +25,9 @@ class Menu:
         print("16. Search By Tag")
         print("17. Advanced Dashboard")
         print("18. Export CSV")
-        print("19. Exit")
+        print("19. Assign Reputation")
+        print("20. Update Reputation")
+        print("21. View Reputations")
+        print("22. Exit")
 
         return input("\nChoice: ")

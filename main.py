@@ -15,6 +15,7 @@ from threat_intel.timeline_manager import TimelineManager
 from threat_intel.tag_manager import TagManager
 from threat_intel.advanced_dashboard import AdvancedDashboard
 from threat_intel.csv_exporter import CSVExporter
+from threat_intel.reputation_manager import ReputationManager
 
 
 def main():
@@ -78,6 +79,15 @@ def main():
             CSVExporter.export()
 
         elif choice == "19":
+            ReputationManager.add()
+
+        elif choice == "20":
+            ReputationManager.update()
+
+        elif choice == "21":
+            ReputationManager.view()
+
+        elif choice == "22":
 
             print("\nGoodbye!")
             break

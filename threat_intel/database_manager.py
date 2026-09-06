@@ -70,34 +70,39 @@ class DatabaseManager:
         )
         """)
 
+        self.cursor.execute("""
+        CREATE TABLE IF NOT EXISTS reputations (
+
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+            ioc_id INTEGER,
+
+            reputation TEXT
+        )
+        """)
+
         self.connection.commit()
 
-    def add_timeline_event(
-        self,
-        action,
-        target
-    ):
+    def add_timeline_event(self, action, target):
 
         timestamp = datetime.now().strftime(
             "%Y-%m-%d %H:%M:%S"
         )
 
-        self.cursor.execute(
-            """
-            INSERT INTO timeline
-            (
-                action,
-                target,
-                timestamp
-            )
-            VALUES (?, ?, ?)
-            """,
-            (
-                action,
-                target,
-                timestamp
-            )
+        self.cursor.execute("""
+        INSERT INTO timeline
+        (
+            action,
+            target,
+            timestamp
         )
+        VALUES (?, ?, ?)
+        """,
+        (
+            action,
+            target,
+            timestamp
+        ))
 
         self.connection.commit()
 
@@ -220,13 +225,13 @@ class DatabaseManager:
         return self.cursor.fetchall()
 
     def add_campaign(
-        self,
-        campaign_name,
+        self,campaign_name,
         threat_type,
         severity
     ):
 
-        self.cursor.execute("""INSERT INTO campaigns
+        self.cursor.execute("""
+        INSERT INTO campaigns
         (
             campaign_name,
             threat_type,
@@ -276,6 +281,11 @@ class DatabaseManager:
 
         self.connection.commit()
 
+        self.add_timeline_event(
+            "Tag Added",
+            tag
+        )
+
     def search_tag(
         self,
         tag
@@ -290,6 +300,69 @@ class DatabaseManager:
         """,
         (tag,)
         )
+
+        return self.cursor.fetchall()
+
+    def add_reputation(
+        self,
+        ioc_id,
+        reputation
+    ):
+
+        self.cursor.execute("""
+        INSERT INTO reputations
+        (
+            ioc_id,
+            reputation
+        )
+        VALUES (?, ?)
+        """,
+        (
+            ioc_id,
+            reputation
+        ))
+
+        self.connection.commit()
+
+        self.add_timeline_event(
+            "Reputation Assigned",
+            reputation
+        )
+
+    def update_reputation(
+        self,
+        ioc_id,
+        reputation
+    ):
+
+        self.cursor.execute("""
+        UPDATE reputations
+        SET reputation = ?
+        WHERE ioc_id = ?
+        """,
+        (
+            reputation,
+            ioc_id
+        ))
+
+        self.connection.commit()
+
+        self.add_timeline_event(
+            "Reputation Updated",
+            reputation
+        )
+
+    def get_reputations(self):
+
+        self.cursor.execute("""
+        SELECT
+            reputations.ioc_id,
+            iocs.ioc_value,
+            reputations.reputation
+        FROM reputations
+        JOIN iocs
+        ON reputations.ioc_id = iocs.id
+        """)
 
         return self.cursor.fetchall()
 
