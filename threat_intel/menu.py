@@ -23,6 +23,7 @@ class Menu:
         print("14. Activity Timeline")
         print("15. Add Tag")
         print("16. Search By Tag")
-        print("17. Exit")
+        print("17. Advanced Dashboard")
+        print("18. Exit")
 
         return input("\nChoice: ")

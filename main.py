@@ -13,6 +13,7 @@ from threat_intel.correlation_engine import CorrelationEngine
 from threat_intel.campaign_manager import CampaignManager
 from threat_intel.timeline_manager import TimelineManager
 from threat_intel.tag_manager import TagManager
+from threat_intel.advanced_dashboard import AdvancedDashboard
 
 
 def main():
@@ -70,6 +71,9 @@ def main():
             TagManager.search_by_tag()
 
         elif choice == "17":
+            AdvancedDashboard.show()
+
+        elif choice == "18":
 
             print("\nGoodbye!")
             break
