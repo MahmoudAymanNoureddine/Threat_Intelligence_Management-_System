@@ -1,4 +1,4 @@
-# Threat Intelligence Engine
+# Threat Intelligence Management System
 
 A Python-based Threat Intelligence Engine designed for IOC Management, Threat Hunting, Security Analysis, Campaign Tracking, Reputation Management, and Reporting.
 
