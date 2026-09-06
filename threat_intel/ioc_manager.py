@@ -1,14 +1,15 @@
 from threat_intel.database_manager import DatabaseManager
+from threat_intel.threat_scoring import ThreatScoring
 
 
 class IOCManager:
 
     @staticmethod
-    def add_ioc():
+    def add():
 
         db = DatabaseManager()
 
-        print("\n=== Add New IOC ===\n")
+        print("\n===== Add New IOC =====\n")
 
         ioc_type = input(
             "IOC Type (IP / Domain / Hash): "
@@ -22,19 +23,28 @@ class IOCManager:
             "Threat Type: "
         )
 
-        severity = input(
-            "Severity (Low / Medium / High): "
+        score, severity = (
+            ThreatScoring.calculate(
+                threat_type
+            )
         )
 
         db.add_ioc(
             ioc_type,
             ioc_value,
             threat_type,
+            score,
             severity
         )
 
         db.close()
 
+        print("\n[+] IOC Added Successfully")
+
         print(
-            "\n[+] IOC Added Successfully"
+            f"Threat Score: {score}"
+        )
+
+        print(
+            f"Severity: {severity}"
         )

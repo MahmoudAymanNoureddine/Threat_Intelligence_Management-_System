@@ -27,6 +27,8 @@ class DatabaseManager:
 
                 threat_type TEXT,
 
+                score INTEGER,
+
                 severity TEXT
             )
             """
@@ -39,6 +41,7 @@ class DatabaseManager:
         ioc_type,
         ioc_value,
         threat_type,
+        score,
         severity
     ):
 
@@ -49,14 +52,16 @@ class DatabaseManager:
                 ioc_type,
                 ioc_value,
                 threat_type,
+                score,
                 severity
             )
-            VALUES (?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?)
             """,
             (
                 ioc_type,
                 ioc_value,
                 threat_type,
+                score,
                 severity
             )
         )
