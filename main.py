@@ -14,6 +14,7 @@ from threat_intel.campaign_manager import CampaignManager
 from threat_intel.timeline_manager import TimelineManager
 from threat_intel.tag_manager import TagManager
 from threat_intel.advanced_dashboard import AdvancedDashboard
+from threat_intel.csv_exporter import CSVExporter
 
 
 def main():
@@ -74,6 +75,9 @@ def main():
             AdvancedDashboard.show()
 
         elif choice == "18":
+            CSVExporter.export()
+
+        elif choice == "19":
 
             print("\nGoodbye!")
             break

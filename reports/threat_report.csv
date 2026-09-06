@@ -1,0 +1,5 @@
+ID,IOC Type,IOC Value,Threat Type,Score,Severity
+1,ip,8.8.8.8,ransomware,100,CRITICAL
+2,ip,1.1.1.1,bootnet,20,LOW
+3,ip,1.1.1.1,lockbit,20,LOW
+4,domain,hackbox,sniffing,60,MEDIUM
