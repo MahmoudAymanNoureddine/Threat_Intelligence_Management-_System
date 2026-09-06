@@ -11,9 +11,9 @@ class DatabaseManager:
 
         self.cursor = self.connection.cursor()
 
-        self.create_table()
+        self.create_tables()
 
-    def create_table(self):
+    def create_tables(self):
 
         self.cursor.execute(
             """
@@ -28,6 +28,21 @@ class DatabaseManager:
                 threat_type TEXT,
 
                 score INTEGER,
+
+                severity TEXT
+            )
+            """
+        )
+
+        self.cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS campaigns (
+
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                campaign_name TEXT,
+
+                threat_type TEXT,
 
                 severity TEXT
             )
@@ -71,10 +86,7 @@ class DatabaseManager:
     def get_all_iocs(self):
 
         self.cursor.execute(
-            """
-            SELECT *
-            FROM iocs
-            """
+            "SELECT * FROM iocs"
         )
 
         return self.cursor.fetchall()
@@ -135,6 +147,43 @@ class DatabaseManager:
             SELECT *
             FROM iocs
             WHERE severity = 'CRITICAL'
+            """
+        )
+
+        return self.cursor.fetchall()
+
+    def add_campaign(
+        self,
+        campaign_name,
+        threat_type,
+        severity
+    ):
+
+        self.cursor.execute(
+            """
+            INSERT INTO campaigns
+            (
+                campaign_name,
+                threat_type,
+                severity
+            )
+            VALUES (?, ?, ?)
+            """,
+            (
+                campaign_name,
+                threat_type,
+                severity
+            )
+        )
+
+        self.connection.commit()
+
+    def get_all_campaigns(self):
+
+        self.cursor.execute(
+            """
+            SELECT *
+            FROM campaigns
             """
         )
 

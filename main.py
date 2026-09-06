@@ -10,6 +10,7 @@ from threat_intel.statistics_engine import StatisticsEngine
 from threat_intel.feed_engine import FeedEngine
 from threat_intel.executive_dashboard import ExecutiveDashboard
 from threat_intel.correlation_engine import CorrelationEngine
+from threat_intel.campaign_manager import CampaignManager
 
 
 def main():
@@ -19,52 +20,48 @@ def main():
         choice = Menu.show()
 
         if choice == "1":
-
             IOCManager.add()
 
         elif choice == "2":
-
             IOCViewer.show()
 
         elif choice == "3":
-
             IOCSearch.search()
 
         elif choice == "4":
-
             IOCUpdate.update()
 
         elif choice == "5":
-
             IOCDelete.delete()
 
         elif choice == "6":
-
             ReportGenerator.generate()
 
         elif choice == "7":
-
             ThreatHunter.hunt()
 
         elif choice == "8":
-
             StatisticsEngine.show()
 
         elif choice == "9":
-
             FeedEngine.show_feed()
 
         elif choice == "10":
-
             ExecutiveDashboard.show()
 
         elif choice == "11":
-
             CorrelationEngine.correlate()
 
         elif choice == "12":
+            CampaignManager.create_campaign()
+
+        elif choice == "13":
+            CampaignManager.view_campaigns()
+
+        elif choice == "14":
 
             print("\nGoodbye!")
+
             break
 
         else:

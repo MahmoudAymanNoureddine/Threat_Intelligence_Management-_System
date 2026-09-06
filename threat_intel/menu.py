@@ -18,6 +18,8 @@ class Menu:
         print("9. Threat Feed")
         print("10. Executive Dashboard")
         print("11. IOC Correlation")
-        print("12. Exit")
+        print("12. Create Campaign")
+        print("13. View Campaigns")
+        print("14. Exit")
 
         return input("\nChoice: ")
