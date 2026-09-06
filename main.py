@@ -9,6 +9,7 @@ from threat_intel.threat_hunter import ThreatHunter
 from threat_intel.statistics_engine import StatisticsEngine
 from threat_intel.feed_engine import FeedEngine
 from threat_intel.executive_dashboard import ExecutiveDashboard
+from threat_intel.correlation_engine import CorrelationEngine
 
 
 def main():
@@ -59,8 +60,11 @@ def main():
 
         elif choice == "11":
 
-            print("\nGoodbye!")
+            CorrelationEngine.correlate()
 
+        elif choice == "12":
+
+            print("\nGoodbye!")
             break
 
         else:

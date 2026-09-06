@@ -17,6 +17,7 @@ class Menu:
         print("8. Statistics Dashboard")
         print("9. Threat Feed")
         print("10. Executive Dashboard")
-        print("11. Exit")
+        print("11. IOC Correlation")
+        print("12. Exit")
 
         return input("\nChoice: ")
