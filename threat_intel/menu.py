@@ -10,6 +10,8 @@ class Menu:
         print("1. Add IOC")
         print("2. View All IOCs")
         print("3. Search IOC")
-        print("4. Exit")
+        print("4. Update IOC")
+        print("5. Delete IOC")
+        print("6. Exit")
 
         return input("\nChoice: ")

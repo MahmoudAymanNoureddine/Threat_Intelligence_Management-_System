@@ -66,10 +66,7 @@ class DatabaseManager:
     def get_all_iocs(self):
 
         self.cursor.execute(
-            """
-            SELECT *
-            FROM iocs
-            """
+            "SELECT * FROM iocs"
         )
 
         return self.cursor.fetchall()
@@ -86,6 +83,42 @@ class DatabaseManager:
         )
 
         return self.cursor.fetchall()
+
+    def update_ioc(
+        self,
+        ioc_id,
+        threat_type,
+        severity
+    ):
+
+        self.cursor.execute(
+            """
+            UPDATE iocs
+            SET
+                threat_type = ?,
+                severity = ?
+            WHERE id = ?
+            """,
+            (
+                threat_type,
+                severity,
+                ioc_id
+            )
+        )
+
+        self.connection.commit()
+
+    def delete_ioc(self, ioc_id):
+
+        self.cursor.execute(
+            """
+            DELETE FROM iocs
+            WHERE id = ?
+            """,
+            (ioc_id,)
+        )
+
+        self.connection.commit()
 
     def close(self):
 

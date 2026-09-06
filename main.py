@@ -2,6 +2,8 @@ from threat_intel.menu import Menu
 from threat_intel.ioc_manager import IOCManager
 from threat_intel.ioc_viewer import IOCViewer
 from threat_intel.ioc_search import IOCSearch
+from threat_intel.ioc_update import IOCUpdate
+from threat_intel.ioc_delete import IOCDelete
 
 
 def main():
@@ -23,6 +25,14 @@ def main():
             IOCSearch.search()
 
         elif choice == "4":
+
+            IOCUpdate.update()
+
+        elif choice == "5":
+
+            IOCDelete.delete()
+
+        elif choice == "6":
 
             print("\nGoodbye!")
             break
