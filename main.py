@@ -11,6 +11,7 @@ from threat_intel.feed_engine import FeedEngine
 from threat_intel.executive_dashboard import ExecutiveDashboard
 from threat_intel.correlation_engine import CorrelationEngine
 from threat_intel.campaign_manager import CampaignManager
+from threat_intel.timeline_manager import TimelineManager
 
 
 def main():
@@ -59,9 +60,11 @@ def main():
             CampaignManager.view_campaigns()
 
         elif choice == "14":
+            TimelineManager.show()
+
+        elif choice == "15":
 
             print("\nGoodbye!")
-
             break
 
         else:

@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 
 class DatabaseManager:
@@ -49,7 +50,63 @@ class DatabaseManager:
             """
         )
 
+        self.cursor.execute(
+            """
+            CREATE TABLE IF NOT EXISTS timeline (
+
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+                action TEXT,
+
+                target TEXT,
+
+                timestamp TEXT
+            )
+            """
+        )
+
         self.connection.commit()
+
+    def add_timeline_event(
+        self,
+        action,
+        target
+    ):
+
+        timestamp = datetime.now().strftime(
+            "%Y-%m-%d %H:%M:%S"
+        )
+
+        self.cursor.execute(
+            """
+            INSERT INTO timeline
+            (
+                action,
+                target,
+                timestamp
+            )
+            VALUES (?, ?, ?)
+            """,
+            (
+                action,
+                target,
+                timestamp
+            )
+        )
+
+        self.connection.commit()
+
+    def get_all_events(self):
+
+        self.cursor.execute(
+            """
+            SELECT *
+            FROM timeline
+            ORDER BY id DESC
+            """
+        )
+
+        return self.cursor.fetchall()
 
     def add_ioc(
         self,
@@ -83,10 +140,18 @@ class DatabaseManager:
 
         self.connection.commit()
 
+        self.add_timeline_event(
+            "IOC Added",
+            ioc_value
+        )
+
     def get_all_iocs(self):
 
         self.cursor.execute(
-            "SELECT * FROM iocs"
+            """
+            SELECT *
+            FROM iocs
+            """
         )
 
         return self.cursor.fetchall()
@@ -128,6 +193,11 @@ class DatabaseManager:
 
         self.connection.commit()
 
+        self.add_timeline_event(
+            "IOC Updated",
+            str(ioc_id)
+        )
+
     def delete_ioc(self, ioc_id):
 
         self.cursor.execute(
@@ -140,11 +210,15 @@ class DatabaseManager:
 
         self.connection.commit()
 
+        self.add_timeline_event(
+            "IOC Deleted",
+            str(ioc_id)
+        )
+
     def get_critical_iocs(self):
 
         self.cursor.execute(
-            """
-            SELECT *
+            """SELECT *
             FROM iocs
             WHERE severity = 'CRITICAL'
             """
@@ -177,6 +251,11 @@ class DatabaseManager:
         )
 
         self.connection.commit()
+
+        self.add_timeline_event(
+            "Campaign Created",
+            campaign_name
+        )
 
     def get_all_campaigns(self):
 
