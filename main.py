@@ -12,6 +12,7 @@ from threat_intel.executive_dashboard import ExecutiveDashboard
 from threat_intel.correlation_engine import CorrelationEngine
 from threat_intel.campaign_manager import CampaignManager
 from threat_intel.timeline_manager import TimelineManager
+from threat_intel.tag_manager import TagManager
 
 
 def main():
@@ -63,6 +64,12 @@ def main():
             TimelineManager.show()
 
         elif choice == "15":
+            TagManager.add_tag()
+
+        elif choice == "16":
+            TagManager.search_by_tag()
+
+        elif choice == "17":
 
             print("\nGoodbye!")
             break

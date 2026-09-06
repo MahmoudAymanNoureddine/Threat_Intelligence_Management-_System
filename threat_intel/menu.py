@@ -21,6 +21,8 @@ class Menu:
         print("12. Create Campaign")
         print("13. View Campaigns")
         print("14. Activity Timeline")
-        print("15. Exit")
+        print("15. Add Tag")
+        print("16. Search By Tag")
+        print("17. Exit")
 
         return input("\nChoice: ")
