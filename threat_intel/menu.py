@@ -16,6 +16,7 @@ class Menu:
         print("7. Threat Hunting")
         print("8. Statistics Dashboard")
         print("9. Threat Feed")
-        print("10. Exit")
+        print("10. Executive Dashboard")
+        print("11. Exit")
 
         return input("\nChoice: ")

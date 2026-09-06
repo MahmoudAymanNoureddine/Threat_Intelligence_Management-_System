@@ -8,6 +8,7 @@ from threat_intel.report_generator import ReportGenerator
 from threat_intel.threat_hunter import ThreatHunter
 from threat_intel.statistics_engine import StatisticsEngine
 from threat_intel.feed_engine import FeedEngine
+from threat_intel.executive_dashboard import ExecutiveDashboard
 
 
 def main():
@@ -54,7 +55,12 @@ def main():
 
         elif choice == "10":
 
+            ExecutiveDashboard.show()
+
+        elif choice == "11":
+
             print("\nGoodbye!")
+
             break
 
         else:
